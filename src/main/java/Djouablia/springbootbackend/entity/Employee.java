@@ -1,6 +1,7 @@
 package Djouablia.springbootbackend.entity;
 
 
+import Djouablia.springbootbackend.Gender;
 import jakarta.persistence.*;
 
 @Entity
@@ -25,9 +26,17 @@ public class Employee {
     @Column(name="phone")
     private String phone;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender") // Specify the database column name
+    private Gender gender;
+
+
+
 
     @Column(name="image_url")
     private String imageUrl;
+
+
 
 
     // define constructors
@@ -35,13 +44,14 @@ public class Employee {
 
     }
 
-    public Employee(int id, String name, String email, String jobTitle, String phone, String imageUrl) {
+    public Employee(int id, String name, String email, String jobTitle, String phone, String imageUrl,Gender gender) {
         this.id = id;
         Name = name;
         this.email = email;
         this.jobTitle = jobTitle;
         this.phone = phone;
         this.imageUrl = imageUrl;
+        this.gender = gender;
     }
 
     public int getId() {
@@ -82,6 +92,14 @@ public class Employee {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public String getImageUrl() {
