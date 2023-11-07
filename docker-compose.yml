@@ -14,7 +14,7 @@ services:
     networks:
       - employee-manager-network
   springboot:
-    image: springboot-backend-image
+    image: moislam/backend-springboot-repository:latest
     container_name: springboot-container
     ports:
       - "8080:8080"
