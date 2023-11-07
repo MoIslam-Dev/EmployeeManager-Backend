@@ -49,7 +49,7 @@ jobs:
         run: docker login -u moislam -p ${{ secrets.BACKEND_ACCESS_TOKEN }}
         # Log in to Docker Hub again; it might not be necessary if already logged in.
 
-      - name: Run Docker Compose
+      - name: Run Docker Compose for ensure the app can deployed and run successfull
         run: |
           docker-compose -f docker-compose.yml up -d
         # Start your application and its dependencies defined in 'docker-compose.yaml'.
