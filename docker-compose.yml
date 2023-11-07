@@ -27,7 +27,7 @@ services:
     depends_on:
       - mysql
   angular-frontend:
-    image: angular-frontend-image  # Use the Angular image you built
+    image: moislam/frontend-angular-repository:latest  # Use the Angular image you built
     container_name: angular-container
     ports:
       - "4200:4200"
