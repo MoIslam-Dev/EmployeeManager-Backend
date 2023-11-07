@@ -54,5 +54,5 @@ jobs:
           docker-compose -f docker-compose.yml up -d
         # Start your application and its dependencies defined in 'docker-compose.yaml'.
       - name: Capture Docker Compose Logs
-        run: docker-compose -f docker-compose.yml logs springboot-container
+        run: docker-compose -f docker-compose.yml logs springboot
 
