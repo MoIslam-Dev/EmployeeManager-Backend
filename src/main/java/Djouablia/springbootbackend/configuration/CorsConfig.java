@@ -3,6 +3,7 @@ package Djouablia.springbootbackend.configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
@@ -10,14 +11,26 @@ import org.springframework.web.filter.CorsFilter;
 public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.addAllowedOrigin("*"); // Allow requests from any origin
-        corsConfiguration.addAllowedHeader("*"); // Allow all headers
-        corsConfiguration.addAllowedMethod("*"); // Allow all HTTP methods
-        corsConfiguration.addExposedHeader("Access-Control-Allow-Origin"); // Add this line to expose the header
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+
+        // Allow requests from localhost
+        corsConfiguration.addAllowedOrigin("http://localhost:4200");
+
+        // Allow specific headers
+        corsConfiguration.addAllowedHeader("Authorization");
+        corsConfiguration.addAllowedHeader("Content-Type");
+
+        // Allow specific HTTP methods
+        corsConfiguration.addAllowedMethod("GET");
+        corsConfiguration.addAllowedMethod("POST");
+        corsConfiguration.addAllowedMethod("PUT");
+        corsConfiguration.addAllowedMethod("DELETE");
+
+        // Allow credentials
+        corsConfiguration.setAllowCredentials(true);
+
         source.registerCorsConfiguration("/**", corsConfiguration);
-        return new CorsFilter(source);
+        return new CorsFilter((CorsConfigurationSource) source);
     }
 }
