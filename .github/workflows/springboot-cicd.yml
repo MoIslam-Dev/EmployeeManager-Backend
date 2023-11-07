@@ -1,0 +1,38 @@
+name: Spring Boot CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+
+      - name: Build JAR
+        run: ./mvnw package -DskipTests
+
+      - name: Set up Docker Buildx (optional but recommended)
+        uses: docker/setup-buildx-action@v1
+
+      - name: Docker Login
+        run: docker login -u your-docker-username -p ${{ secrets.DOCKER_ACCESS_TOKEN }}
+
+      - name: Build Spring Boot Docker Image
+        run: |
+          docker build -t your-docker-username/springboot-backend-image .
+          docker push your-docker-username/springboot-backend-image
+
+      - name: Build and Run Docker Compose
+        run: |
+          docker-compose up -d
+
