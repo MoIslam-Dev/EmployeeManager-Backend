@@ -18,7 +18,7 @@ jobs:
         # This step checks out your code from the repository.
 
       - name: Clean and Install with Maven
-        run: ./mvnw clean install
+        run: mvn clean install
         # Clean and build your Maven project.
 
       - name: Set up Docker Buildx (optional but recommended)
