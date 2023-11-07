@@ -53,6 +53,10 @@ jobs:
         run: |
           docker-compose -f docker-compose.yml up -d
         # Start your application and its dependencies defined in 'docker-compose.yaml'.
-      - name: Capture Docker Compose Logs
+      - name: Capture Docker Compose Logs springboot service
         run: docker-compose -f docker-compose.yml logs springboot
+      - name: Capture Docker Compose Logs mysql service
+        run: docker-compose -f docker-compose.yml logs mysql
+      - name: Capture Docker Compose Logs angular frontend service
+        run: docker-compose -f docker-compose.yml logs angular-frontend
 
