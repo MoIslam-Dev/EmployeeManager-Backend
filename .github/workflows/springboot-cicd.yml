@@ -10,12 +10,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Specify the runner environment for this job .
+    # Specify the runner environment for this job.
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         # This step checks out your code from the repository.
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'  # You can specify '17' for Java 17 or the version you need.
+          distribution: 'adopt'
 
       - name: Clean and Install with Maven
         run: mvn clean install
@@ -36,7 +42,7 @@ jobs:
         # Build your Docker image and push it to your Docker Hub repository.
 
       - name: Run Tests
-        run: ./mvnw test
+        run: mvn test
         # Execute tests for your application.
 
       - name: Log in to Docker Hub
