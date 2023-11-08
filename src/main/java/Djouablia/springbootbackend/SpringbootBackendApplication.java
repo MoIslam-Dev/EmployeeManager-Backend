@@ -25,7 +25,7 @@ public class SpringbootBackendApplication {
         corsConfiguration.setAllowCredentials(true);
 
         // Allow requests from your specific frontend URL
-        corsConfiguration.addAllowedOrigin("https://moislam-webdev.github.io/EmployeeManager-Frontend");
+        corsConfiguration.addAllowedOrigin("https://moislam-webdev.github.io");
 
         // Allow requests from Angular's localhost during development
         corsConfiguration.addAllowedOrigin("http://localhost:4200");
